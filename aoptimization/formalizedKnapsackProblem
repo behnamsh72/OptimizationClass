@@ -1,0 +1,90 @@
+* Each item is represented by a pair, <value, weight>
+
+*The knapsack can accommodate items with  a total  wight of no more than w
+
+*A vector, L, of length n,represented the set of available items.Each element of the vector is an item
+
+*A vector,  V,of length n, is used to indicate whether or not items are taken.
+if V[i]=1, item L[i] is taken.if V[i]=0 , item L[i] is not taken.
+
+
+* find  a V that maximizes sum(i=0 ; i=n-1)[V[i]*I[i].value
+subject to the constraint that {sum(i=0;i=n-1)[V[i]*I[i].weight<=w}
+I[i] is the value of the item
+
+Solutions:
+Brute Force Algorithm:
+1-Enumerate all possible combination of items.That is to say,generate all subsets of the set of items.
+This is called the Power set.
+
+2-Remove all of the combinations whose total units exceeds the allowed weight.
+
+3-Form the remaining combinations choose any one whose value is the largest.
+
+Implementation:
+
+
+Is there a better algorithm that would have given us the answer?
+The sad answer is no, for the knapsack problem and indeed many optimization problems
+are inherently exponential.what that means is there is no algorithm that provides an exact
+solution to this problem whose worst case running time is not exponential in the number
+of items.it is an exponentially hard problem.
+
+Greedy algorithms:(A practical Alternative and a simple way to implement optimization problem):
+* while knapsack not full put "best" available item in knapsack
+what is the best mean?
+
+The pros and Cons of Greedy:
+*Easy to implement
+*Computationally efficient
+
+*But does not always yield the best solution
+*don't know even how good the approximation is
+
+
+Brute Force Algorithm Implementation:
+implement by search tree
+we have a root, we start with a root, in this particular form research c
+we have two children.and then we look at our list of elements to be
+considered that we might take and we look at the first element in that list,
+and then we draw a left branch which shows the consequence of choosing
+to take that element and a right branch which shows the consequence of not
+taking that element.and then we considered the second element and so forth,until we
+get to the bottom of the tree.so by convention, the left element will mean
+we took it.and the right direction will mean we didn't take it.
+and then we apply it recursively to the non leaf children.the leaf means we get
+to the end(or with degree 1).
+and then finally we'll choose the node,that has the highest value that meets
+our constraints.
+
+(left-most leaf of this tree has got all the possible items_)see the image.
+
+when we complete this tree(search tree)i just check which of these
+leaves meets the constraint and what are the values.
+
+Computational Complexity of this process:
+*Time based on number of nodes generated
+so if we know the number of nodes that are in tree,we then know the complexity
+of this algorithm(the asymptotic complexity).
+well,how many levels do we have in the tree?
+just the number of items,because at each level of the tree we're deciding to take
+or not to take an item.and so we can only do that for the number of items we have.
+
+*Number of levels is number of items to choose from
+
+* Number of nodes at level i is  pow(2,i)
+*So, if there are n items the number of nodes is
+sigma(i=0 to i=n)pow(2,i) so we have O(2^n+1) Complexity
+
+*An obvious optimization:don't explore parts of tree that vioalte constraint
+(e.g too many colories) Doesn't change complexity
+
+
+***How we can modify the maxval we looked at before to use a mome?
+First, we have to add the third argument, which is initially going to be
+set the empty dictionary. The key of the memo  will be a tuple
+the items left to be considered and the available weight, Because the items
+left to be considered are in a list we can represent the items left to be
+considered by how long the list is,Because we 'll start at the front item and
+just work our way to the end and then the function works, essentially
+exactly the same way fastFib worked.

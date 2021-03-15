@@ -1,0 +1,101 @@
+generally we are trying to build computational models.(gather data and analyse)
+Graph: A graph has two elements, two components, it has a set of nodes, sometimes
+called vertices. Those nodes probably are going to have some information
+associated with them.It could be as simple as it's name.it could be more
+complicated A node might represent  a student record the grades.and a graph
+might talk about putting together all of the grades for a class.
+We want to know what are the connections between the elements in my system.
+The second thing we 're going to have is what we call edges.sometimes called
+arcs.An edge will connect a pair of nodes.we have 2 ways to build a graph.
+1-Undirected(graph):an edge connect two nodes together and that allows
+sharing of information between both of them
+2-Directed(digraph):in which case edge has  a direction from a source to a
+destination or sometimes from a parent to a child.and in this case the information
+can only flow from the source to the child.
+
+Those edges could just be connections.But in some cases, we 're going to put
+information on the edges, for example, weights.The weight might tell me how much
+effort is it going to take me to go from a source  to a destination.
+
+How i do pass through this graph, finding a path from one place to another.
+for example minimizing the cost associated with passing through the edges.
+How do i simply find a connection between two nodes in this graph.
+
+Trees are special case of graphs.
+Basically A special king of directed graph is a tree in which any pair of nodes is
+connected by a single path.
+
+
+
+How i might represent the graph:
+i can create edges but i've got to bring them all together,
+in the digraph the edges pass in only one direction.
+First way:
+Given all the sources and all the destinations,I could just create a big matrix
+called and adjacency matrix.The rows would be all the sources,The columns would
+be  all the destinations.and then in  a particular spot in the matrix if there
+is an edge between a source and a destination i'd just put a one.otherwise i'd
+put  a zero.because it's a directed graph it's not symmetric.
+This would be  a perfectly reasonable way to represent  a graph, but not the most
+convenient one.i'd have to go into the matrix to lookup things up,it may also
+not be a very efficient way of representing things.for example if there
+are very edges in the graph i could have a huge matrix with mostly zeros.and
+that's not the most effective way to do it.
+i am using an alternative called an adjacency list.
+Second Way:
+The idea here is, for every node in the graph.I'm going to associate with
+it a list of destinations.That is, for a node what are the places i can reach
+with a single edge
+
+
+
+
+Depth First Search:
+
+* Start at an initial node
+
+* Consider all the edges that leave that node, in some order
+
+*Follow the first edge,and check to see if at goal node
+
+* If not, repeat the process from the node
+
+* Continue until either find goal node,or run out of options
+
+*when run out of options, backtrack to the previous node and try the next edge
+,repeating this process
+
+
+Alternative:
+Breadth first search:
+I'm going to start off with initial load.I'm going to look at all the
+edges that leave that node, in some order.
+I'm going to follow the first edge as before and see if i'm at the
+right place.If i'm not,I'm going to follow the next edge and do the same thing
+
+1- Start at an initial node
+
+2- Consider all the edges that leave that node, in some order.
+
+3-Follow the first edge, and check to see if at goal node
+
+4-if not, try the next edge from the current node
+
+5-Continue until either find goal node,or run out of options
+
+When run out of edge options, move to next node at same distance
+from start, and repeat
+
+When run out of node options,move to next level in the graph
+(all nodes one step further from start) and repeat
+
+
+what about weighted shortest path?
+The idea would be, imagine on my edges, it's not just a step
+but i have a weight.Flying to L.A is a little longer that flying
+from Boston to New York.What I'd like to do is do the same kind of
+optimization,but now just minimizing the sum of the weights on the
+edges not the number of edges. depth first search is easily modified
+to do this.the cost now would simply be what's the sum of those weights
+But the Breadth first search can't easily modified because the short
+weighted path may have many more than the minimum number of loops.

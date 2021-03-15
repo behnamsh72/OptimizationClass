@@ -1,0 +1,73 @@
+Monte Carlo Simulation:
+* A method of estimating the value of an unknown quantity using the principle of inferential statistics
+
+* Inferential statistics:
+Population:a set of examples
+Sample: a proper subset of population
+Key fact: a random sample tends to exhibit the same properties as the population from which it is drawn
+That's exactly we did with random walk
+
+
+Law of Large Numbers:
+In repeated independent tests with the same actual probability p of a particular outcome in each test, the chance
+that the fraction of times that outcome occurs differs from p converges to zero as the number of trials goes to
+infinity.
+
+gambler's fallacy:
+people somehow believe that if deviations from expected occur, they'll be evened out in the future.
+and we see something similar to this that is true but this is not true.and there is a great story about it
+this truly happened in Monte Carlo, with Roulette.and you could either bet on black or red.Black came up 26 times
+in a row.and what happened is, word got out on the casino floor that black had kept coming up way too often.
+and people more or less panicked to rush to the table to bet on red, saying well it can't keep coming up black.
+surely the next one will be red. and as it happened when the casino totaled up its winnings, it was a record night
+for the casino.
+probability of 26 consecutive reds 1/67,108,865 a pretty small number.but the probability of 26 consecutive reds
+when the previous 25 25 rolls were red is what? 1/2 because these are independent events.
+
+There is something - it's not the gambler's fallacy that's often confused with it, and that's called regression
+to the mean.
+
+Regression to the Mean:
+if somebody's parents are both taller than average, it's likely that the child will be smaller than the parents.
+Conversely, if the parents are shorter than average.it's likely that the child will be taller than average.
+data actually supported this. and this let us to the notion of regression to the mean.and here's the way in
+which it is subtly different from gambler's fallacy. what he said is:
+
+
+* Following an extreme random event,the next random event is likely to be less extreme
+
+* If you spin a fair roulette wheel 10 times and get 100% reds,that is an extreme event(probability=1/1024)
+
+* It is likely that in the next 10 spins,you will get fewer that 10 reds
+(But the expected number is 5)
+
+So, if you look at the average of the 20 spins, it will be closer to the expected mean of 50% reds than to the
+100% of the the first 10 spins.
+
+Fundamental question of all computational statistics:
+how many samples do we need to look at before we can have real,justifiable confidence in our answer.
+look at variance pic.
+
+Confidence Levels and Intervals:
+Instead of estimating an unknown parameter by a single value(e.g., the mean of a set of trials), a
+confidence interval provides  a range that is likely to contain the unknown value and  a confidence
+that the unknown value lays within that range.
+
+*The return on betting  a pocket 10k TIMES  in European roulette is -3.3%.The margin of error is +/- 3.5%
+with a 95% level of confidence.
+What does this mean?
+IF I were to conduct an infinite number of trials of 10k bets each,
+*My expected average return would be -3.3%
+* My return would be between roughly -6.8% and +0.2% 95 % of time
+
+How do we compute confidence intervals????
+Most of the time we using empirical rule . empirical rule says that if I take the data, find the mean
+compute the standard deviation  as we've just seen :
+68 % of data within one standard deviation of mean
+95% of data within 1.96 standard deviation of mean
+99.7% of data within 3 standard deviation of mean
+
+Assumptions Underlying Empirical Rule:
+* The mean estimation error is zero
+* The distribution of the errors in the estimate is normal
+

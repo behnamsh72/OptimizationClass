@@ -1,0 +1,7 @@
+what we notice is that maybe there's not much difference between what the
+masochistic drunk and the usual drunk do on the x-axis, east and west.
+But there should be a difference on the y-axis because every time, 1/4 of the
+time the drunk is taking  a step north of 1.1 units and 1/4 of the time, he's
+taking a step south of 0.9 units and so 1/2 the time, the steps are diverging
+by a small fraction and if we think about it, 0.1 * 1/2 the time we devide it
+we get 0.05.
