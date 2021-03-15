@@ -71,3 +71,9 @@ Assumptions Underlying Empirical Rule:
 * The mean estimation error is zero
 * The distribution of the errors in the estimate is normal
 
+PDF:(Probability Density function)
+Distributions can be defined by Probability Density functions,that gives us the probability
+of some random variable lying between two values.it defines a curve where the values in the x-axis
+lie between the minimum and maximum values of the variable.
+and it's the area under the curve between those two points that give us the probability of an
+example falling in that range.
