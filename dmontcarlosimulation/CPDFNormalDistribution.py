@@ -38,5 +38,5 @@ def testCheckEmpirical(numTrials):
 
 
 if __name__ == "__main__":
-    # testGaussian()
+    testGaussian()
     testCheckEmpirical(3)

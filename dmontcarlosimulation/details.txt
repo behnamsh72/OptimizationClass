@@ -77,3 +77,28 @@ of some random variable lying between two values.it defines a curve where the va
 lie between the minimum and maximum values of the variable.
 and it's the area under the curve between those two points that give us the probability of an
 example falling in that range.
+
+
+
+Clearly Roulette spin doesn't have a normal distribution.But what we're reasoning about is not
+the return of a single spin but the return of many spins.if we play 1000 spins what is our expected
+return.As soon as we end up reasoning, not about a single event but about the mean of something,
+we can imply something called the central limit theorem.
+Central Limit Theorem (CLT):
+
+Population:Set of examples
+Sample: subset of Population
+
+
+*Given a sufficiently large number:
+1)The means of the samples in a set of samples(the sample means) will be approximately normally
+distributed.
+
+2)This normal distribution will have a mean close to the mean of the population, and
+(The mean of the means will be close to the mean of the population)
+
+3)The variance of the sample means will be close to the variance population divided by the sample size.
+
+Example)Instead of a die that when we roll it we get a number 1,2,3,4,5,6.this particular die
+is continues.it gives us a real number between 1 and 6.so it's a continues die.
+we're going to roll it  a lot of times.check the example of it in code.
