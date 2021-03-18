@@ -1,0 +1,77 @@
+
+Inferential statistics:(remind)
+We make references about populations by examining one or more random samples drawn from that population.
+We used Monte Carlo simulation and the key idea there, as we saw in trying to find the value
+of pi was that we can generate lots of random samples,and then use them to compute confidence
+intervals, and then we use the empirical rule to say, we really have good reason to believe that
+95% of the time we run this simulation our answer will be between here and here.
+that's all well and good when we're doing simulations.
+But what happen when we to actually sample something real.For example we run an experiment,and we
+get some data points.and it's too hard to do it over and over again.
+
+Probability sampling:
+* Each memeber of the population has a nonzero probability of being included in  a sample.
+* Simple random sampling: each member has an equal chance of being chosen
+
+Suppose we wanted to survey MIT students to find out what fraction of them are nerds.
+So suppose we wanted to consider  a random sample of 100 students.We could walk around
+campus and choose 100 people at random, and if 12% were nerds, we would say 12% of the MIT
+undergraduates are nerds.we used stratified sampling when there are small groups, subgroups,
+that we want to make sure are represented.and we want to represent them proportional to their
+size in the population.This can also be used to reduce the needed size of the sample..
+If we want to make sure we got some architecture students in our sample, we'd need to get more
+than 100 people to start with.But if we stratify, we can take fewer samples.It works well when
+we do it properly.But it can be tricky to do it properly.and we are going to stick to simple
+random samples here.
+
+*numpy.std -> is function in the numpy module that returns the standard deviation
+
+*random.sample(population,sampleSize)->returns  a list containing sampleSize randomly
+chosen distinct elements of population
+
+*sampling without replacement->you take a sample,and then it's out of the population,so we won't
+draw it the next time.
+
+Or we can do sampling with replacement which allows us to draw the same sample multiple times.
+
+Here this code used sampling without replacement.
+
+* pylab.axvline(x=popMean,color='r') draws a red vertical line at pop Mean on the x-axis.
+
+*There's also a pylab.axhline function : that'll show us where the mean is.
+
+*‌pylab.errorbar(xVals,sizeMeans,yerrors=1.96*pylab.array(sizeSDs),fmt='o',label='95% confidence interval)
+
+
+
+
+Compare Distributions:
+
+
+Skew:is  a measure of the asymmetry probability distribution.
+the more skew we have, the more samples we're going to need to get a good approximation.
+So if the population is very skewed,very asymmetric in the distribution, we need
+a lot of samples to figure out what's going on.if it's very uniform we need many fewer samples.
+when we go about deciding how many samples we need.we need to have some estimate
+of the skew in our population
+
+
+
+To estimate mean from a single sample:
+1)Choose sample size based on estimate of skew in population
+
+2)Choose a random sample from population
+
+3)Compute the mean and standard deviation of that sample
+
+4)Use the standard deviation of that sample to estimate SE .
+
+(standard error=population standard deviation/size of the sample)
+(once standard deviation of sample = standard deviation of pop)
+then( standard error=standard deviation of sample/size of the sample)
+
+so mean of pop= meanOfSample +- standard error)
+
+This will turn out to be a good estimate.and then once we've done that, we use the estimated
+standard error to generate confidence intervals around the sample mean, and we're done.
+
