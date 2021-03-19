@@ -1,0 +1,36 @@
+lease squares give me a measure of how close that line is to a fit.
+it's almost variance.that's the variance times the number of observations, or another way
+of saying it is if i divided this by the number of observations, that would be the variance.
+If i took the square root it would be the standard deviation.
+why this is valuable?
+because that tells us something about how badly things are dispersed,or how much variation
+there is in this measurement.
+
+How do i find the best-fitting line?
+for that we need to come up with a minimization technique.
+
+To minimize this objective function, I want to find a curve for the predicted observations
+that leads to the best possible solution.
+and i'm going to make a simple assumption:
+I'm going to assume that my model for this predicted curve i've been using the example
+of a line but we're going to say curve is a polynomial.
+it's a polynomial and one variable.The one variable is what are the x values of the samples.
+And i'm going to assume that the curve is a polynomial.In the simplest case it's a line
+in case order and two it's going to be parabola.
+I'm going to use Linear regression to find the polynomial that best fits the data,
+that minimizes that objective function.
+Polynomial: c x**p , c:the coefficient, a real number
+p:the degrees of the term, a non negative integer
+
+*The degree of the polynomial is the largest degree of any term.
+
+Examples: Line : ax+b  & Parabola:ax^2+bx+c
+
+for linear regression my goal is find a and b such that when we use this polynomial to
+compute those y values, that sum squared difference is minimized.
+
+so the sum squared difference is my measure of fit.ALL I have to do is find a & b,and that's
+where linear regression comes in.
+
+Polyfit provides built in functions to find these polynomial fits.
+

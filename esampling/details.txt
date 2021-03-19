@@ -70,7 +70,9 @@ To estimate mean from a single sample:
 (once standard deviation of sample = standard deviation of pop)
 then( standard error=standard deviation of sample/size of the sample)
 
-so mean of pop= meanOfSample +- standard error)
+so mean of pop= meanOfSample +- 1.96*standard error)
+1.95 for 95% confidence interval
+for more confidence interval accuracy we can use 3*standard error
 
 This will turn out to be a good estimate.and then once we've done that, we use the estimated
 standard error to generate confidence intervals around the sample mean, and we're done.

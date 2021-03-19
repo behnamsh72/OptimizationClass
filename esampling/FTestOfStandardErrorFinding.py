@@ -14,6 +14,7 @@ def getHighs():
     return population
 
 
+# if sample size is good enough we can replace std(population) with std(sample)
 def test(temp, sampleSize, popMean, numTrials):
     numBad = 0
     for t in range(numTrials):
@@ -22,7 +23,7 @@ def test(temp, sampleSize, popMean, numTrials):
         se = numpy.std(sample) / sampleSize ** 0.5
         if abs(popMean - sampleMean) > 1.96 * se:
             numBad += 1
-    print("Num of Bads: ",numBad)
+    print("Num of Bads: ", numBad)
     print('Fraction outside 95% confidence interval = ', numBad / numTrials)
 
 

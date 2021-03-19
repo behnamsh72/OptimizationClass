@@ -33,9 +33,6 @@ def getMeansAndSDs(population, sample, verbose=False):
            numpy.std(population), numpy.std(sample)
 
 
-
-
-
 def getHighs():
     inFile = open('temperatures.csv')
     population = []
@@ -50,24 +47,24 @@ def getHighs():
 
 if __name__ == "__main__":
     random.seed(0)
-population = getHighs()
-sample = random.sample(population, 100)
-getMeansAndSDs(population, sample, True)
+    population = getHighs()
+    sample = random.sample(population, 100)
+    getMeansAndSDs(population, sample, True)
 
-random.seed(0)
-population = getHighs()
-sampleSize = 100
-numSamples = 1000
-sampleMeans = []
-for i in range(numSamples):
-    sample = random.sample(population, sampleSize)
-    popMean, sampleMean, popSD, sampleSD = \
-        getMeansAndSDs(population, sample, verbose=False)
-    sampleMeans.append(sampleMean)
-print('Mean of sample Means =',
-      round(sum(sampleMeans) / len(sampleMeans), 3))
-print('Standard deviation of sample means =',
-      round(numpy.std(sampleMeans), 3))
-makeHist(sampleMeans, 'Means of Samples', 'Mean', 'Frequency')
-pylab.axvline(x=popMean, color='r')
-pylab.show()
+    random.seed(0)
+    population = getHighs()
+    sampleSize = 100
+    numSamples = 1000
+    sampleMeans = []
+    for i in range(numSamples):
+        sample = random.sample(population, sampleSize)
+        popMean, sampleMean, popSD, sampleSD = \
+            getMeansAndSDs(population, sample, verbose=False)
+        sampleMeans.append(sampleMean)
+    print('Mean of sample Means =',
+          round(sum(sampleMeans) / len(sampleMeans), 3))
+    print('Standard deviation of sample means =',
+          round(numpy.std(sampleMeans), 3))
+    makeHist(sampleMeans, 'Means of Samples', 'Mean', 'Frequency')
+    pylab.axvline(x=popMean, color='r')
+    pylab.show()
