@@ -34,3 +34,84 @@ where linear regression comes in.
 
 Polyfit provides built in functions to find these polynomial fits.
 
+
+Second Part of this lectures::
+How good are these fits?
+
+FIRST,How do i measure which one's better other than looking at it by eye?
+
+And the second part of it's in an absolute sense,how do i know where the best solution is?
+
+The relative fit:
+
+We're fitting a curve which is a function of the independent variable to to dependent variable.
+I've got a set of x values.I'm trying to predict what the y values should be,the displacement
+should be.I want to get a good fit to that.The idea is that given an independent value,
+it gives me an estimate of what it should be,and i really want to know which fit provides
+the better estimates.and since i was simply minimizing mean squared error,average squared
+error an obvious thing to do is just to use the goodness of fit by looking at that error.
+
+Coefficient Of Determination:
+
+R squared is always going to be between zero and one.
+If R squared is equal to one this is great,It says the model explains all of the
+variability in the data.
+
+If R squared is equal to zero, meaning there's no relationship between the value's predicted
+by the model and the actual data.
+
+
+
+Cross Validates:
+
+Generated models using one dataset,and then test them on another dataset.
+
+* Use models for Dataset1 to predict points for Dataset2
+* Use models for Dataset2 to predict points for Dataset1
+
+What do i expect?
+
+Certainly expect that the testing error is likely to be larger than the training error
+because I train on one set of data.
+and that means this ought to to be a better way to think about, how well does this model
+generalize? Or how well does it predict other behaviour,besides what i started with.
+
+Result of Cross validates:
+If we only fit the model to training data,and we look at how well it does,we
+could get what looks like a great fit but we may actually have come up with far too
+complex a model.Order 16 instead of order 2.and the only way we are likely to detect
+that is to train on one test set and test on a different.and if we do that it's likely
+to expose whether, in fact I have done a good job on fitting or whether I have overfit
+to the data.
+
+Now suppose I don't have theory Like hook's law to guide me.Can I still figure out
+what's a good model to fit to the data?
+We're going to use cross-validation to guide the choice of the model complexity.
+If the data set's small,we can use what's called leave one out cross-validation.
+If the data set's bigger than that, we can use k-fold cross validation Or just what's
+called repeated random sampling.But we can use this same idea of validating new data
+to try and figure out whether the model is a good model or not.
+
+Leave one out cross-validation:
+I'm given a dataset it's not too large.The idea is to walk through a number of trials.
+number of trials is equal to the size of the dataset,and for each one, take the
+data set or a copy of it,and drop out one of the samples,So leave one out.start off
+by leaving out the first one,then leaving out the second one, and then leaving out
+the third one,For each one of these training sets,build the model.
+For example by using linear regression.and then test that model on that data point
+that we left out.So leave out the first one, build a model on all of the other ones,
+and then see how well that model predicts the first one.Leave out the second one,
+build a model using all of them but the second one, see how well it predicts the second
+one.and average the results.it works when we don't have really large data sets,because
+it won't take too long.But it's a nice way of actually testing validation.
+
+K-Fold Cross Validation:
+Divide the data set up into k equal sized chunks.Leave one of them out.
+Use the rest to build the model,and then use that model to predict that first chunk
+we left out.Leave out the second chunk, and keep doing it.Same idea, but now with
+groups of things rather than just leaving those single data points.
+
+Repeated random sampling:
+start out with some data set,I'm going to run through some number of trials.
+I'm going to call that (k).But I'm also going to pick some number of random samples
+from the dataset
