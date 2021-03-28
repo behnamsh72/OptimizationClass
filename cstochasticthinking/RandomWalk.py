@@ -126,7 +126,7 @@ def drunkTest(walkLengths, numTrials, dclass):
         plt.plot(x, [math.sqrt(i) for i in x], 'g-.', label="Square root of steps")
 
     elif dclass == MasochistDrunk:
-        plt.plot(x, y, 'b--', label='UsualDrunk')
+        plt.plot(x, y, 'b--', label='MasochistDrunk')
         plt.plot(x, [i * 0.05 for i in x], 'y-.', label="num steps * 0.05")
 
 
