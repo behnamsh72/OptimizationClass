@@ -11,6 +11,7 @@ if __name__ == "__main__":
     nPlus = 0
     nMinus = 0
     numberOfRepeatedX = {}
+    random.seed()
     for i in range(0, 100000):
         r = random.choice([-1, 1])
         if r == 1:

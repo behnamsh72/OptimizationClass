@@ -44,6 +44,7 @@ if __name__ == "__main__":
     pow2Distances = []
     locations = []
     locations.append(loc)
+    random.seed()
     while numberOfMoves < 10000:
         choices = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         xMove, yMove = random.choice(choices)
