@@ -23,4 +23,4 @@ if __name__ == "__main__":
     yAxis = list(numbers.values())
     pylab.plot(xAxis, yAxis)
     pylab.show()
-    print("Standard Deviation/N = ", numpy.std(randomNumbers) / n, "and 1/sqrt(n)=", 1 / math.sqrt(n))
+    print("Standard Deviation/N = ", numpy.std(randomNumbers) / n, "and first/sqrt(n)=", 1 / math.sqrt(n))

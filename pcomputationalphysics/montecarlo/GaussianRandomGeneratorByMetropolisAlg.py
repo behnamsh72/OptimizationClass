@@ -14,9 +14,9 @@ if __name__ == "__main__":
     xSequences = []
 
     x0 = 0.4
-    numSamples = 10000
-    # delta = 1.28  #a.r=0.5
-    delta = 0.25
+    numSamples = 100000
+    delta = 1.28  # a.r=0.5
+    # delta = 0.25
 
     acceptanceCounter = 0
     x = x0
@@ -79,7 +79,8 @@ if __name__ == "__main__":
     pylab.plot(xAxis, yAxis, '.')
     pylab.show()
 
-    j = 30
+    j = 10 #tole hambastegi dar evaluate correlation 1 be das
+    # amad ba fit kardan 3-10 barabar an ra az dataha joda mikonim
     xSequencesPlusJ = []
     for m in range(len(xSequences) - j):
         xSequencesPlusJ.append(xSequences[m + j])
@@ -95,44 +96,52 @@ if __name__ == "__main__":
 
     print("Auto correlation= ", autoCorrelation)
 
-    newOptimizeList = []
+    uncorrelatedList = []
     for t in range(len(xSequences)):
         if (t % round(autoCorrelation * 100)) == 0:
-            newOptimizeList.append(xSequences[t])
+            uncorrelatedList.append(xSequences[t])
 
-    print(len(newOptimizeList))
+    print(len(uncorrelatedList))
 
     dictY1 = {}
     for i in range(10):
         dictY1[i] = 0
 
-    meanY1 = numpy.mean(newOptimizeList)
-    stdY1s = numpy.std(newOptimizeList)
-    for num in newOptimizeList:
-        if math.fabs(num - meanY1) <= stdY1s / 2:
+    meanUncorrelatedList = numpy.mean(uncorrelatedList)
+    stdUncorrelatedList = numpy.std(uncorrelatedList)
+    for num in uncorrelatedList:
+        if math.fabs(num - meanUncorrelatedList) <= stdUncorrelatedList / 2:
             dictY1[0] += 1
-        elif math.fabs(num - meanY1) <= 2 * stdY1s / 4 and math.fabs(num - meanY1) > stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 2 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > stdUncorrelatedList / 4:
             dictY1[1] += 1
 
-        elif math.fabs(num - meanY1) <= 3 * stdY1s / 4 and math.fabs(num - meanY1) > 2 * stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 3 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > 2 * stdUncorrelatedList / 4:
             dictY1[2] += 1
 
-        elif math.fabs(num - meanY1) <= 4 * stdY1s / 4 and math.fabs(num - meanY1) > 3 * stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 4 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > 3 * stdUncorrelatedList / 4:
             dictY1[3] += 1
 
-        elif math.fabs(num - meanY1) <= 5 * stdY1s / 4 and math.fabs(num - meanY1) > 4 * stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 5 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > 4 * stdUncorrelatedList / 4:
             dictY1[4] += 1
 
-        elif math.fabs(num - meanY1) <= 6 * stdY1s / 4 and math.fabs(num - meanY1) > 5 * stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 6 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > 5 * stdUncorrelatedList / 4:
             dictY1[5] += 1
 
-        elif math.fabs(num - meanY1) <= 7 * stdY1s / 4 and math.fabs(num - meanY1) > 6 * stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 7 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > 6 * stdUncorrelatedList / 4:
             dictY1[6] += 1
 
-        elif math.fabs(num - meanY1) <= 8 * stdY1s / 4 and math.fabs(num - meanY1) > 7 * stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 8 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > 7 * stdUncorrelatedList / 4:
             dictY1[7] += 1
 
-        elif math.fabs(num - meanY1) <= 9 * stdY1s / 4 and math.fabs(num - meanY1) > 8 * stdY1s / 4:
+        elif math.fabs(num - meanUncorrelatedList) <= 9 * stdUncorrelatedList / 4 and math.fabs(
+                num - meanUncorrelatedList) > 8 * stdUncorrelatedList / 4:
             dictY1[8] += 1
         else:
             dictY1[9] += 1

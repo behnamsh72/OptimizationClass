@@ -31,8 +31,8 @@ def plotMeans(numDice, numRolls, numBins, legend, color, style):
 
 
 def testForDice():
-    mean, std = plotMeans(1, 1000000, 19, '1 die', 'b', '*')
-    print('Mean of rolling 1 die = ', str(mean) + ' , ' + 'Std= ', std)
+    mean, std = plotMeans(1, 1000000, 19, 'first die', 'b', '*')
+    print('Mean of rolling first die = ', str(mean) + ' , ' + 'Std= ', std)
     mean, std = plotMeans(50, 1000000, 19, ' Mean of 50 dice', 'r', '//')
     print('Mean of rolling 50 die = ', str(mean) + ' , ' + 'Std= ', std)
 

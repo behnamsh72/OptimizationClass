@@ -7,7 +7,7 @@ def dynamicMaxVal(toConsider, avail, memo={}):
     and memo a dictionary with a tuple as key aoptimization value is the ramining items
     and second value is the ramining weight or avail weight
        Returns a tuple of the total value of a solution to the
-         0/1 knapsack problem and the items of that solution"""
+         0/first knapsack problem and the items of that solution"""
     if toConsider == [] or avail == 0:
         result = (0, ())
     elif toConsider[0].getCost() > avail:

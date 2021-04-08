@@ -1,0 +1,113 @@
+
+
+What is machine learning?
+Fields of study that gives computers the ability to learn without being explicitly programmed.
+Traditional Programming:
+
+data - >
+           Computer -> Output   like square root finder
+Program ->
+
+Machine learning:
+Data- >
+        Computer ->Program  Like Curve fitting by linear regression
+Output->
+
+How Are things Learned?
+Memorization:
+Accumulation(Anbasht) of individual facts
+Limited by                                  Declarative knowledge
+*Time to observe facts
+*Memory to store facts
+
+Genralization:
+Deduce new facts from old facts
+Limited by accuracy of deduction process    Imperative Knowledge->Machine learnign used
+*Essentially a predictive activity
+*Assumes that the past predicts the future
+
+
+Basic Paradigm:
+1-Observe set of examples:training data (Football players,labeled by position,with height and weight data)
+2-Infer something about process that generated that data(Find canonical model of positions, by statistics)
+3-Use inference to make predictions about previously unseen data:test data(Predict Position of new players)
+
+Variation on paradigm:
+Supervised:given a set of feature/label pairs,find a rule that predicts the label
+associated with a previously unseen data.
+
+Unsupervised:given a set of feature vectors(without labels)group them into
+"natural clusters" (or create label for groups)
+
+See 2,3,4,5 pictures first.
+
+Animal Example(See 6th picture in this package first):
+
+We can think of our animal examples as consisting of four binary features
+ and one integer feature
+
+One way to learn to separate reptiles from non-reptiles is to measure the distance
+between pairs of example, and use that:
+
+*To cluster nearby examples into a common class(unlabeled data),or
+*To find  a classifier surface in space of examples that optimally separates different
+(labelled)collection of examples from other collections
+
+rattlesnake=[1,1,1,1,0]
+boa constrictor=[0,1,0,1,0]
+dart Frog=[1,0,1,0,4]
+
+Minkowski Metric (see picture 7)
+dist(X1,X2,p)=(sigma(k=1 len) abs(X1k - X2k)**p)**1/p
+
+p=1 Manhattan Distance
+p=2 Euclidean distance
+
+
+Classification and clustering are two methods
+ of pattern identification used in machine learning.
+ Although both techniques have certain similarities,
+ the difference lies in the fact that classification uses
+ predefined classes in which objects are assigned, while
+ clustering identifies similarities between objects,
+ which it groups according to those characteristics in
+ common and which differentiate them from other groups of objects.
+  These groups are known as "clusters".
+In the field of machine learning, clustering is framed in unsupervised learning;
+ that is, for this type of algorithm we only have one set of
+ input data (not labelled), about which we must obtain information,
+without previously knowing what the output will be.
+
+Clustering is used in projects for companies that want to find common aspects
+ within their customers to apply customer segmentation, create customer
+ journey maps or find groups and focus products or services.
+ Thus, if a significant percentage of customers have certain aspects in
+ common (age, type of family, etc.) the company can justify a particular
+ campaign, service or product.
+ Clustering is also useful to obtain general insights and information.
+
+
+ On the other hand, classification belongs to supervised learning,
+  which means that we know the input data (labeled in this case)
+  and we know the possible output of the algorithm. There is the
+   binary classification that responds to problems with categorical
+    answers (such as "yes" and "no", for example), and the
+     multiclassification, for problems where we find more than two classes,
+      responding to  more open answers such as "great", "regular" and "insufficient".
+
+At Bismart we use classification and clustering in our projects,
+which are framed in many different sectors. For example, in the social services
+ industry, we have used clustering to identify population groups that use
+ specific social services. From social services data, we have been able to
+ identify or cluster groups of people who use similar services according to
+ their attributes (number of people in their charge, degree of dependency,
+ marital status...). Thus, we have been able to detect what type of service a
+ new user of social services will need beforehand by comparing their
+attributes with those of the clusters.
+
+Classification is used when you need to know users or customers to decide which
+products or campaigns will be launched in the future. For example, at Bismart
+we developed a project for the insurance industry in which the client needed to
+classify customers according to accident claims, so that the policy could be
+ classified according to the number of claims predicted. Thus,
+ the company can choose the costumers with the lowest number of claims.

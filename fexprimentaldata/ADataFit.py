@@ -60,8 +60,8 @@ def getData(fileName):
 
 
 if __name__ == "__main__":
-    # fitData("springData.txt",1,"Linear fit")
-    # fitDataUsingPolyVal("springData.txt", 1,"Linear fit")
+    # fitData("springData.txt",first,"Linear fit")
+    # fitDataUsingPolyVal("springData.txt", first,"Linear fit")
     fitDataUsingPolyVal("mysteryData.txt", 2, "Quadratic Fit", 'r', True)
     fitDataUsingPolyVal("mysteryData.txt", 4, "Quadrature Fit", 'b')
     fitDataUsingPolyVal("mysteryData.txt", 8, "Degree8 Fit", 'g')

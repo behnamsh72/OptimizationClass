@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     print("Rg= sigma = ", numpy.std(distances))
     print("t^3/4= N^3/4 =Moving numbers =", numberOfMoves ** (3 / 4))
-    print("Apporximately Rg=N^1/2=t^1/2 and this fact is true")
+    print("Apporximately Rg=N^first/2=t^first/2 and this fact is true")
     xAxis = []
     yAxis = []
 

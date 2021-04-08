@@ -98,11 +98,11 @@ if __name__ == "__main__":
     #     amRoulette = 0
     #     for i in range(20):
     #         random.seed(0)
-    #         fairRoulette += playRoulette(FairRoulette(), numSpins, 2, 1, True)
+    #         fairRoulette += playRoulette(FairRoulette(), numSpins, 2, first, True)
     #         random.seed(0)
-    #         euRoulette += playRoulette(EuRoulette(), numSpins, 2, 1, True)
+    #         euRoulette += playRoulette(EuRoulette(), numSpins, 2, first, True)
     #         random.seed(0)
-    #         amRoulette += playRoulette(AmRoulette(), numSpins, 2, 1, False)
+    #         amRoulette += playRoulette(AmRoulette(), numSpins, 2, first, False)
     #     print("Num spins : ", numSpins, " FairRoulette=", fairRoulette / 20, "%\n")
     #     print("Num spins : ", numSpins, " EuRoulette=", euRoulette / 20, "%\n")
     #     print("Num spins : ", numSpins, " AmRoulette=", amRoulette / 20, "%\n")

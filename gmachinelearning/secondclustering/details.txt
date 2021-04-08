@@ -1,0 +1,83 @@
+Clustering is an Optimization Problem:
+variability of a cluster:
+variability(c)=sigma(e member of cluster) distance(mean(cluster),e)**2
+
+dissimilarity of set of clusters:
+dissimilarity(C)=sigma(c member of clusters)variability(c)
+
+
+variability it's not quite variance but it's very close to it.
+
+If i divide the variability be the size of the cluster I would have Variance.
+we divide variability to size of the cluster to normalize this.
+
+Can we say that the Optimization problem we want to solve by clustering
+is simply finding a capital C that minimizes dissimilarity?No
+We could constraint the number of clusters,for Example I only want to have
+at most five clusters.Do the best we can to minimize dissimilarity but we're not
+allowed to use more than five clusters.That's the most common constraint
+that gets places in the problem.
+
+There are two methods(with many implementation):
+The first is called hierarchical clustering and the second calls K-Means.
+
+Hierarchical Clustering:
+1-Start by assigning each item to a cluster, so that if we have N items,we not have
+N clusters, each containing just one item.
+
+2-Find the closest(most similar) pair of clusters and merge them into a single
+cluster,so that now we have one fewer cluster.
+
+3-Continue the process until all items are clustered into a single cluster
+of size N.
+We can have some stopping criteria.
+
+This is called agglomerative hierarchical clustering because we put them together.
+
+What does distance mean?
+
+Linkage Metrics:
+1-Single-linkage:consider the distance between one cluster and another cluster
+to be equal to the shortest distance from any member of cluster to any member of
+the other cluster.
+
+2-Complete-linkage:
+consider the distance between any two clusters is equal to the greatest
+distance from any member to any other member.
+
+3-Average-linkage:
+consider the distance between one cluster and another cluster to be equal to the
+average distance from any member of one cluster to any member of the other cluster.
+
+They're all used in practiced for different kinds of results depending on the
+application of the clustering.
+
+
+Given a linkage criterion, we always get the same answer.There's nothing
+random here.it's completely deterministic.
+Notice by the way the answer might not be optimal with regards to that linkage
+criteria.It's a greedy algorithm exactly.we're making locally optimum decision
+at which point which may or may  not be globally optimal.it's flexible,
+choosing different linkage criteria i get different results.But it's also
+potentially really really slow.This is not something we want to do on a milion
+examples.
+
+◦ Naïve algorithm n 3
+◦ n 2 algorithms exist for some linkage criteria
+
+K-means a much faster greedy algorithm
+Most useful when you know how many clusters you want
+K is the number of clusters we want.
+
+K-means Algorithms:
+randomly chose k examples as initial centroids.
+while true:
+    create k clusters by assigning each example to closest centroid.
+    compute k new centroids by averaging examples in each cluster
+    if centroid don't change:
+        break
+So it's converged.
+
+k*n*d, where n is number of points and d time required
+to compute the distance between a pair of points
+
