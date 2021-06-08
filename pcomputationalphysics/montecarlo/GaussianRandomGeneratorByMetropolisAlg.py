@@ -80,7 +80,7 @@ if __name__ == "__main__":
     pylab.show()
 
     j = 10 #tole hambastegi dar evaluate correlation 1 be das
-    # amad ba fit kardan 3-10 barabar an ra az dataha joda mikonim
+    # amad ba fit kardan 3-10 barabar an ra az avale data joda mikonim
     xSequencesPlusJ = []
     for m in range(len(xSequences) - j):
         xSequencesPlusJ.append(xSequences[m + j])

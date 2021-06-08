@@ -17,7 +17,7 @@ if __name__ == "__main__":
     f = []
     f2 = []
     for i in range(numSamples):
-        r = random.uniform(0, 1) * 2
+        r = random.uniform(0, 2)
         f.append(integrand(r))
         f2.append(integrand(r) ** 2)
         I += integrand(r)
