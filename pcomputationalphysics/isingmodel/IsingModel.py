@@ -9,17 +9,22 @@ from pcomputationalphysics.isingmodel.CalculateMagnetization import magnetizatio
 from pcomputationalphysics.isingmodel.AutoCorrelation import calculateAutoCorrelation
 
 
-def metropolisAlgForIsingModel(size, beta, flag, sigma):
+def metropolisAlgForIsingModel(size, beta, flag, sigma, J):
     initial = initialState(size, flag, sigma)
     print(initial)
-    energy = calculateEnergy(size, initial)
+    energy = calculateEnergy(size, initial, J)
     initMagn = magnetizationCalculation(initial)
     number = 0
     numSamples = 100000
     accepted = 0
     checkR = 0
     magnetizationList = []
+    magnetizationList.clear()
+    absoluteValueOfMagnetizationList = []
+    absoluteValueOfMagnetizationList.clear()
     magnetizationList.append(initMagn)
+    print("Initial magn =", math.fabs(initMagn))
+    absoluteValueOfMagnetizationList.append(math.fabs(initMagn))
     energies = []
     energies.append(energy)
     random.seed()
@@ -31,54 +36,61 @@ def metropolisAlgForIsingModel(size, beta, flag, sigma):
         # newEnergy = calculateEnergy(size, newSigma)
         # energyDelta = newEnergy - energy
         energyDelta = calculateEnergyDelta(i, j, initial)
+        minusBeta = -beta
         r = random.uniform(0, 1)
         if energyDelta < 0:
             initial[i][j] = -initial[i][j]
             magnetization = magnetizationCalculation(initial)
-            magnetizationList.append(math.fabs(magnetization))
+            magnetizationList.append(magnetization)
+            absoluteValueOfMagnetizationList.append(math.fabs(magnetization))
             energy += energyDelta
             energies.append(energy)
             accepted += 1
-        elif r < numpy.exp(-beta * energyDelta):
+        elif r < math.exp(minusBeta * energyDelta):
             initial[i][j] = -initial[i][j]
             energy += energyDelta
             magnetization = magnetizationCalculation(initial)
             magnetizationList.append(magnetization)
+            absoluteValueOfMagnetizationList.append(math.fabs(magnetization))
             energies.append(energy)
             accepted += 1
             checkR += 1
 
         number += 1
-
+    print("Check R=", checkR)
     print("For Beta= \n", beta)
     print("Number of accepted move:", accepted)
     print("acceptance rate:", accepted / numSamples)
-    jInAutoCorr = 100  # best choice for
+    jInAutoCorr = 25  # best choice for
     print("Magnetization Auto correlation for j=", jInAutoCorr, " is :",
           calculateAutoCorrelation(magnetizationList, jInAutoCorr))
     print("Energy Auto correlation for j=", jInAutoCorr, " is :",
           calculateAutoCorrelation(energies, jInAutoCorr))
     unCorrelatedMagnetization = []
+    unCorrelatedAbsoluteMagnetization = []
     unCorrelatedEnergy = []
     for s in range(len(magnetizationList)):
-        if s % jInAutoCorr == 0 and s > 1000:
+        if s % jInAutoCorr == 0 and s > 10 * jInAutoCorr:
             unCorrelatedMagnetization.append(magnetizationList[s])
+            unCorrelatedAbsoluteMagnetization.append(absoluteValueOfMagnetizationList[s])
 
     for t in range(len(energies)):
-        if t % jInAutoCorr == 0 and t > 1000:
+        if t % jInAutoCorr == 0 and t > 10 * jInAutoCorr:
             unCorrelatedEnergy.append(energies[t])
     mean = 0
-    if len(unCorrelatedMagnetization) != 0:
-        mean = numpy.mean(unCorrelatedMagnetization)
+    if len(unCorrelatedAbsoluteMagnetization) != 0:
+        mean = numpy.mean(unCorrelatedAbsoluteMagnetization)
     else:
-        mean = initMagn
+        mean = math.fabs(initMagn)
     energyMean = 0
     if len(unCorrelatedEnergy) != 0:
         energyMean = numpy.mean(unCorrelatedEnergy)
     else:
         energyMean = energy
     # we return normalize magnetization sigma(i,j)/L^2
-    return initial, mean / (size * size), energyMean / (size * size)
+    print("Final Sigma:\n")
+    print(initial)
+    return initial, mean, energyMean
 
 
 if __name__ == "__main__":
@@ -88,17 +100,18 @@ if __name__ == "__main__":
     flag = False
     magVersusTemp = {}
     energyVersusTemp = {}
-    temperature = 1000
+    temperature = 20
     temp = numpy.random.choice([0], size=(size, size))
     temperatures = []
     while (temperature > 0.1):
-        beta = (1 / temperature)
-        temp, mag, meanOfEnergy = metropolisAlgForIsingModel(size, beta, flag, temp)
+        beta = (1.0000000 / temperature)
+        temp, mag, meanOfEnergy = metropolisAlgForIsingModel(size, beta, flag, temp, j)
         magVersusTemp[beta] = mag
         energyVersusTemp[beta] = meanOfEnergy
+        print("For T=", temperature, " Magn =", mag)
         flag = True
         temperatures.append(temperature)
-        temperature *= 0.92
+        temperature -= 0.05
 
     print(magVersusTemp)
     temperatureInverseAxis = list(magVersusTemp.keys())

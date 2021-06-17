@@ -2,10 +2,10 @@ import numpy
 import random
 
 
-def calculateEnergy(size, sigma):
+def calculateEnergy(size, sigma,J):
     energy = 0
     for i in range(size):
         for j in range(size):
             energy += -sigma[i][j] * (sigma[i][(j + 1) % (size)] +
                                       sigma[(i + 1) % (size)][j])
-    return energy
+    return energy*J

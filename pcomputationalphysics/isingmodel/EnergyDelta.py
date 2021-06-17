@@ -13,7 +13,7 @@ def calculateEnergyDelta(i, j, sigma):
     else:
         jMinus1 = (j) - 1
 
-    deltaEnergy = -2 * sigma[i][j] * (
+    deltaEnergy = 2 * sigma[i][j] * (
             sigma[iMinus1][j] + sigma[i][jMinus1] + sigma[i][
         (j + 1) % (len(sigma))] +
             sigma[(i + 1) % (len(sigma))][j])
