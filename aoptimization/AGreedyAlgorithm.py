@@ -65,7 +65,7 @@ def testGreedys(foods, maxUnits):
     testGreedy(foods, maxUnits, Food.getValue)
     print("\nUse greedy by cost to allocate", maxUnits, 'calories')
     # we want to reverse the sort because we want the cheaper items to get chosen aoptimization
-    # labda builds a function that evaluates the expression on those parameters and returns the result of evaluating the expression
+    # lambda builds a function that evaluates the expression on those parameters and returns the result of evaluating the expression
     # so instead of writing def , i've inline defined a function
     testGreedy(foods, maxUnits, lambda x: 1 / Food.getCost(x))
 
