@@ -4,7 +4,7 @@
 # Collaborators:
 # Time:
 
-from ps1.ps1_partition import get_partitions
+from aoptimization.ps1.ps1_partition import get_partitions
 import time
 from collections import OrderedDict
 

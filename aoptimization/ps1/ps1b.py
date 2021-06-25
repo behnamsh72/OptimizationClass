@@ -50,9 +50,24 @@ def weight_is_in_egg_weights(weight, egg_weights):
 # EXAMPLE TESTING CODE, feel free to add more if you'd like
 if __name__ == '__main__':
     egg_weights = (1, 5, 10, 25)
-    n = 99
+    n = 99#sum of eggs weight
     print("Egg weights = (first, 5, 10, 25)")
     print("n = 99")
     print("Expected ouput: 9 (3 * 25 + 2 * 10 + 4 * first = 99)")
     print("Actual output:", dp_make_weight(egg_weights, n))
     print()
+    egg_weights = (1, 5, 10, 25)
+    n = 25
+    print("Egg weights = (1, 5, 10, 25)")
+    print("n = 25")
+    print("Expected ouput: 1")
+    print("Actual output:", dp_make_weight(egg_weights, n))
+    print("\n")
+
+    egg_weights = (1, 5, 10, 25)
+    n = 4
+    print("Egg weights = (1, 5, 10, 25)")
+    print("n = 4")
+    print("Expected ouput: 4")
+    print("Actual output:", dp_make_weight(egg_weights, n))
+    print("\n")
