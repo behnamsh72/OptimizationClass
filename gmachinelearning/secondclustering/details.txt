@@ -22,7 +22,7 @@ There are two methods(with many implementation):
 The first is called hierarchical clustering and the second calls K-Means.
 
 Hierarchical Clustering:
-1-Start by assigning each item to a cluster, so that if we have N items,we not have
+1-Start by assigning each item to a cluster, so that if we have N items,we now have
 N clusters, each containing just one item.
 
 2-Find the closest(most similar) pair of clusters and merge them into a single
@@ -30,9 +30,13 @@ cluster,so that now we have one fewer cluster.
 
 3-Continue the process until all items are clustered into a single cluster
 of size N.
+
+what's interesting about hierarchical clustering is we stop it typically somewhere along the way
+
 We can have some stopping criteria.
 
-This is called agglomerative hierarchical clustering because we put them together.
+
+This is called agglomerative hierarchical clustering  because we start with bunch of thing and we agglomerate them or we put them together.
 
 What does distance mean?
 
@@ -62,8 +66,8 @@ choosing different linkage criteria i get different results.But it's also
 potentially really really slow.This is not something we want to do on a milion
 examples.
 
-◦ Naïve algorithm n 3
-◦ n 2 algorithms exist for some linkage criteria
+◦ Naïve algorithm n^3
+◦ n^2 algorithms exist for some linkage criteria for example single-linage
 
 K-means a much faster greedy algorithm
 Most useful when you know how many clusters you want
@@ -78,6 +82,33 @@ while true:
         break
 So it's converged.
 
+what's the complexity of 1 iteration:
+we've got k centroids.Now i have to take each example and compare it to each in a naively,at least to each centroid to see which is closest to.
+so that's k comparisons per example.
 k*n*d, where n is number of points and d time required
 to compute the distance between a pair of points
 
+This is a way small number than N squared,typically so each iteration is pretty quick,
+as we'll see, this typically converges quite quickly so we usually need a very small number of iterations.
+so it's quite efficient and there are various ways we can optimize it.to make it even more efficient.
+this is the most commonly-used clustering algorithm because it works really fast.
+
+PROBLEMS WITH K MEANS:
+1-how do we choose k?
+2-the results can depend upon the initial centroids.unlike hierarchical clustering,
+k means is non deterministic.Depending upon what random examples we choose,
+we can get a different number of iterations.
+
+let's think about choosing k:
+people choosing k using a priori knowledge about the application.
+often, we know enough about the application, we can choose k.
+A better approach is to search for a good k.so we can try different values of k and evaluate the quality of the result.
+or we can run hierarchical clustering on a subset of data.I've got a milion points,what I'm going to do is take a subset
+of 10000, run hierarchical clustering From that get a sense of the structure underlying the data.
+Decide k should be 6,and then run k-means with k=6, people often do this.They run hierarchical clustering on a small
+subset of the data and then choose k.
+
+What about unlucky centroids:
+We could be clever and try and select good initial centroids.So people often will do that,
+and what they'll do is try and just make sure that they're distributed over the space
+Another approach is to try multiple sets of randomly chosen centroids, and then just select the best results.
