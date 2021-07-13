@@ -1,0 +1,104 @@
+Supervised learning:
+Regression:
+* Predict a real number associated with a feature vector
+*E.g, use linear regression to fit  a curve to data
+
+Classification:
+Predict a discrete value(label) associated with a feature vector
+
+How we can use distances to classify animals in lecture 11 example?
+The simplest approach to classification,and it's actually one that's used a fair amount in practice,
+is called nearest neighbor.
+We don't actually learn anything other than we just remember.So we remember training data
+and we want to predict the label of new example,we find the nearest example in the training data
+and just choose the label associated with that example.
+K nearest neighbors:
+the basic idea here is that we don't just take the nearest neighbors, we take some number of nearest
+neighbors,usually an odd number, and we just let them vote.
+ Advantages:
+◦ Learning fast, no explicit training
+◦ No theory required
+◦ Easy to explain method and results
+
+ Disadvantages
+◦ Memory intensive and predictions can take a long time
+◦ Are better algorithms than brute force
+◦ No model to shed light on process that generated data
+
+
+How are we going to evaluate our machine learning?
+we define sensitivity, specificity , positive predicted value & negative predictive value
+
+positive predicted value:if we say somebody died,what's the probability is that they really did
+negative predicted value:if we say they didn't die, what's the probability they didn't die.
+
+sensitivity: Percentage currently found
+
+specificity:Percentage correctly rejected
+
+see lec13.pdf for their description and formula.
+
+recall=sensitivity & specificity=precision
+
+
+How we test our classifier?
+WE Have two different methods:
+Leave one out class of testing and repeated called random subsampling.
+For leave one out,it's typically used when we have a small number of examples and so we want
+as much training data as possible as we build our model.and so we take all of our examples,
+remove one of them,train on n-1, test on 1, and then we put that 1 back and remove another 1 and again train
+on n-1 and test on 1.
+and we do this for each element of the data,and then we average our results.
+when we have a larger set of data, and there we might say split our data 80/20,take 80 percent of the data
+to train on, test it on 20.
+so this is very similar to what i talked about earlier, and answered the question how to choose k.
+I haven't seen the future examples, but in order to believe in my model and say my parameter settings,
+i do this repeated random subsampling or leave one out,either one.
+
+
+Logistic Regression:
+In someways it's similar to linear regression,but different in some important ways.
+Linear regression is designed to predict  a real number.Now what we want here is a
+Probability.so the probability of some event.we know that the dependent variable can only
+take on a finite set of values,So we want to predict survived or didn't survived,It's no good
+to say we predict this person half survived,you know survived, but is brain dead or something.
+The problem with just using regular linear regression is a lot of time you we get nonsense predictions.
+we can have below 0 and more than 1 probability in linear regression.So we need a different method,
+and that's logistic regression.
+*it's designed explicitly for predicting probability of an event
+Dependent variable can only take on a finite set of values Usually 0 or 1.
+
+
+How it's works:
+we take each feature,for example the gender,the cabin class,the age and compute for that weight
+that we're going to use in making predictions.So think of the weights as corresponding to the coefficients
+we get when we do a linear regression.So we have now a coefficient associated with each variable,and we're
+going to take those coefficients,add them up, multiply them by something and make a predictions.
+
+
+*Finds weights for each feature
+Positive implies variable positively correlated with
+outcome
+Negative implies variable negatively correlated with
+outcome
+Absolute magnitude related to strength of the correlation
+Then we use an Optimization process to compute these weights
+from the training data.it's a little bit complex,It's key is the way it uses the log function,
+hence the name logistic,but we're not going to look at it.
+
+Sklearn.linear_model:
+fit(sequence of feature vectores,sequence of labels)
+this is the place where the optimization is done.Feature vectors and sequence of labels have the same size.
+
+coef
+Returns weights of features
+
+predict_proba(feature vector)
+    Return probabilities of labels
+
+Logistic regression run faster than KNN.One of the nice thing about logistic regression
+is building the model takes a while but once we've got the model,applying it to a
+large number of variables feature vectors is fast.It's independent of the number of
+training examples because we've got our weights So solving the optimization problem,
+getting the weights depends upon the number of training examples Once we've got the
+weights,It's just evaluating a polynomial So it's very fast.

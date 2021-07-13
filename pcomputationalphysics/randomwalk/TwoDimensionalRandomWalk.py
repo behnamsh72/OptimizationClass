@@ -59,8 +59,8 @@ if __name__ == "__main__":
     print("Mean of distances=", numpy.mean(distances))
 
     print("Rg= Sqrt(mean(distances**2)) = ", math.sqrt(numpy.mean(pow2Distances)))
-    print("t^first/2= N^first/2 =Moving numbers=", math.sqrt(numberOfMoves))
-    print("Apporximately Rg=N^first/2=t^first/2 and this fact is true")
+    print("t^a/2= N^a/2 =Moving numbers=", math.sqrt(numberOfMoves))
+    print("Apporximately Rg=N^a/2=t^a/2 and this fact is true")
     xAxis = []
     yAxis = []
 

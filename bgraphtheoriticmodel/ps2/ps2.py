@@ -199,7 +199,7 @@ def get_outdoor_dist(digraph, path):
 # Problem 3c: Implement directed_dfs
 def directed_dfs(digraph, start, end, max_total_dist, max_dist_outdoors):
     """
-    Finds the shortest path from start to end using a directed depth-first
+    Finds the shortest path from start to end using a directed depth-a
     search. The total distance traveled on the path must not
     exceed max_total_dist, and the distance spent outdoors on this path must
     not exceed max_dist_outdoors.

@@ -148,7 +148,7 @@ def testSP(source, destination):
         print("Threr is no path from ", source, " to ", destination)
 
 
-# Algorithm 2:Breadth- first Search(BFS)
+# Algorithm 2:Breadth- a Search(BFS)
 def BFS(graph, start, end, toprint=False, printQueue=True):
     initPath = [start]  # a list of nodes
     pathQueue = [initPath]  # a list of paths(a list of list of nodes)

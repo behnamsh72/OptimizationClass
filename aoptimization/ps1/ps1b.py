@@ -9,14 +9,14 @@
 # Part B: Golden Eggs
 # ================================
 
-# Problem first
+# Problem a
 def dp_make_weight(egg_weights, target_weight, memo={}):
     """
     Find number of eggs to bring back, using the smallest number of eggs. Assumes there is
-    an infinite supply of eggs of each weight, and there is always a egg of value first.
+    an infinite supply of eggs of each weight, and there is always a egg of value a.
     
     Parameters:
-    egg_weights - tuple of integers, available egg weights sorted from smallest to largest value (first = d1 < d2 < ... < dk)
+    egg_weights - tuple of integers, available egg weights sorted from smallest to largest value (a = d1 < d2 < ... < dk)
     target_weight - int, amount of weight we want to find eggs to fit
     memo - dictionary, OPTIONAL parameter for memoization (you may not need to use this parameter depending on your implementation)
     
@@ -51,9 +51,9 @@ def weight_is_in_egg_weights(weight, egg_weights):
 if __name__ == '__main__':
     egg_weights = (1, 5, 10, 25)
     n = 99#sum of eggs weight
-    print("Egg weights = (first, 5, 10, 25)")
+    print("Egg weights = (a, 5, 10, 25)")
     print("n = 99")
-    print("Expected ouput: 9 (3 * 25 + 2 * 10 + 4 * first = 99)")
+    print("Expected ouput: 9 (3 * 25 + 2 * 10 + 4 * a = 99)")
     print("Actual output:", dp_make_weight(egg_weights, n))
     print()
     egg_weights = (1, 5, 10, 25)

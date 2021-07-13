@@ -54,7 +54,7 @@ if __name__ == "__main__":
     xVals1, yVals1 = getData("Dataset 1.txt")
 
     models1 = genFits(xVals1, yVals1, degrees)
-    testFits(models1, degrees, xVals1, yVals1, "DataSet first.txt")
+    testFits(models1, degrees, xVals1, yVals1, "DataSet a.txt")
 
     pylab.figure()
     xVals2, yVals2 = getData("Dataset 2.txt")
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     testFits(models2, degrees, xVals2, yVals2, 'DataSet 2.txt')
 
     pylab.figure()
-    testFits(models1, degrees, xVals2, yVals2,'DataSet 2 /Model first ')
+    testFits(models1, degrees, xVals2, yVals2,'DataSet 2 /Model a ')
 
     pylab.figure()
     testFits(models2,degrees,xVals1,yVals1,'Dataset1 / Model 2')

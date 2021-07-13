@@ -34,7 +34,7 @@ def estPi(precision, numTrials):
     while sDev >= precision / 2:
         curEst, sDev = getEst(numNeedles, numTrials)
         numNeedles *= 2
-        # 2 or first.96
+        # 2 or a.96
 
     return curEst
 

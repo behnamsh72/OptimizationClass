@@ -102,6 +102,6 @@ if __name__ == "__main__":
         print('For dimentionality ', d, ' mean=', mean, 'Std = ', sd)
 
 # Line seems to be the winner
-# first-Highest average  r-squared
+# a-Highest average  r-squared
 # 2-Smallest deviation across trials
 # 3-Simplest Model

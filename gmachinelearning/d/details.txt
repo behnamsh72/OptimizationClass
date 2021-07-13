@@ -1,0 +1,93 @@
+
+
+In particular there's a big issue,because the features are often correlated with one
+another and so we can't interpret the weights one feature at a time.
+
+There are two major ways people use logistic regression.They're called
+L1 and L2.We use an L2,Because that's the default in Python.
+We can set that parameter at L2 and do that to L1.What an L1 regression
+is designed to do is to find some weights and drive them to 0.
+This is particularly useful when we have a very high-dimensional
+problem relative to the number of examples.and this gets back to that
+question we've talked about many times, of overfitting.
+If we've got 1,000 variables and 1000 examples,we're very likely to
+overfit.L1 is designed to avoid overfitting by taking those 1000
+variables and just giving them 0 weight, and it does typically
+generalize better.But if we have two variables that are correlated.
+L1 will drive 1 to 0,and it will look like it's unimportant.
+But it fact it might be important.it's just correlated with another,
+which has gotten all the credit.
+L2 which is what we did, does the opposite.Is spreads the weight
+across the variables So have a bunch of correlated variables,it might
+look like non of them are very important Because each of them gets a
+small amount of the weight.Again, not so important when we have 4 or 5
+variables But it matters when we have 100 or 1000 variables.
+
+Correlated Features, an Example
+in titanic example:
+C1+C2+C3=1
+*I.E,values are not independent
+*Is being 1st class good, or being  in the other classes bad?
+
+Suppose we eliminate C1 binary feature
+See example L1LogisticRegression
+
+We looked at some at a bunch of different attributes
+Sensitivity and Specificity & Positive predictive value Because we're shifting
+by changing The probability we're making a decision that it's more important not miss
+survivors than it is to .
+In this example 0.9 gave me higher accuracy,but the key thing is notice, the big
+difference here Is Specificity & Positive Pred Value are changing So what is that
+telling me?It's telling me that if I predict you're going to survive  you probably did.
+But looks at sensitivity It means that most of the survivors, I'm predicting they
+died.What's the accuracy still ok?
+because most people died on the ship So we would have done pretty well,we recall
+if we just guessed died for every body.So it's important to understand these things.
+
+So we can change the cutoff.
+That leads to a really important concept of something called the Receiver Operating
+Characteristic.The goal here is to say, Suppose I don't want to make a decision
+about where the cutoff is,But I wanna look at, in some sense, all possible cutoffs
+and look at the shape of it.and that's what this code is designed to do.
+So the way it works is I'll take a training set and a test a test set,usual thing.
+I'll build one model.and that's an important thing and that there's only one model getting built.
+and then  I'm going to vary P,and I'm gonna call apply model with the same model and
+the same test set but different P's and keep track of all of those results.
+and then I'm going to plot a two-dimensional plot The Y-axis will have sensitivity
+and the x-Axis will have one minus specificity So I'm accumulating a bunch of results.
+and then I'm gonna produce this curve called Sklearn.metrics.auc that's not the curve.
+AUC stands for area under the curve.at left end we Can have  0 and right end is interesting
+Remember that my x-axis is not specificity,but 1 minus specificity So what we see
+is the corner is highly sensitive and very  unspecific.So i'll get a lot of false positives.
+The right corner is very specific because 1 minus specificity is 0 and very insensitive.
+So way down at the bottom, I'm declaring nobody to be positive.And at the top corner
+every body.Typically I don't want to be either of these places on the curve.
+I want to be somewhere in the middle.
+
+The right line(Orange Line) represents a random classifier, I filip a coin and i just  classify something
+positive or negative depending on the heads or tails, in this case.Now we can look at
+interesting region,The area between the curve and a random classifier.And that sort of tells me
+how Much better I am than random.I can look at the whole area,the area under the curve.
+and that's the area under the Receiver Operating Curve.
+In the best of all worlds the curve would be 1,and that would be a perfect classifier.
+In the worst of all worlds, it would be 0.But it's never 0 because we don't do worse
+than 0.5.We hope not to do worse than random.If so, we just reverse our predictions.
+And then we're better than random.So random is as bad as we can do,really.
+and so this is very important concept.And it lets us evaluate how good a Classifier
+is independently of what we choose to be the cutoff.
+
+The question is what point does the AUROC become statistically significant?
+It's Really unaswerable question.it will depend upon  a number of things.
+So we're always asking, is it significantly better than X?And so the question is
+is it significantly better than random?
+and we can't just say for example that 0.6 is't and 0.7 is.Because it depends how many
+points we have.If we have a lot of points, it could be only a tiny bit better than 0.5.
+and still be statistically significant.It may be uninterestingly better.It may not be
+significant In the english sense.but we still get statistically significance.So that's a probelm when studies have
+lots of points.In general it depends upon the application.For a lot of applications
+we'll see things in  the 0.7's,being considered pretty useful.
+and the real question shouldn't be whether It's significant but whether it's useful.
+Can we make useful decisions based upon it?
+
+How to lie with statistics????
+Numbers never lies but liars use numbers.

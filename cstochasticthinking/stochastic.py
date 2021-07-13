@@ -3,7 +3,7 @@ import math
 
 
 def rollDie():
-    """:returns a random int between first and 6"""
+    """:returns a random int between a and 6"""
     return random.choice([1, 2, 3, 4, 5, 6])
 
 

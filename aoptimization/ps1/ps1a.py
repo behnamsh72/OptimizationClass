@@ -13,7 +13,7 @@ from collections import OrderedDict
 # Part A: Transporting Space Cows
 # ================================
 
-# Problem first
+# Problem a
 def load_cows(filename):
     """
     Read the contents of the given file.  Assumes the file contents contain
@@ -47,7 +47,7 @@ def greedy_cow_transport(cows, limit=10):
     returned allocation of cows may or may not be optimal.
     The greedy heuristic should follow the following method:
 
-    first. As long as the current trip can fit another cow, add the largest cow that will fit
+    a. As long as the current trip can fit another cow, add the largest cow that will fit
         to the trip
     2. Once the trip is full, begin a new trip to transport the remaining cows
 
@@ -90,7 +90,7 @@ def brute_force_cow_transport(cows, limit=10):
     Finds the allocation of cows that minimizes the number of spaceship trips
     via brute force.  The brute force algorithm should follow the following method:
 
-    first. Enumerate all possible ways that the cows can be divided into separate trips
+    a. Enumerate all possible ways that the cows can be divided into separate trips
         Use the given get_partitions function in ps1_partition.py to help you!
     2. Select the allocation that minimizes the number of trips without making any trip
         that does not obey the weight limitation
