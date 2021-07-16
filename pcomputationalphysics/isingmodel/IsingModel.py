@@ -7,6 +7,7 @@ from pcomputationalphysics.isingmodel.Energy import calculateEnergy
 from pcomputationalphysics.isingmodel.EnergyDelta import calculateEnergyDelta
 from pcomputationalphysics.isingmodel.CalculateMagnetization import magnetizationCalculation
 from pcomputationalphysics.isingmodel.AutoCorrelation import calculateAutoCorrelation
+from pcomputationalphysics.isingmodel.SpatialCorrelationLength import calculatesSpatialCorrelationLength
 
 
 def metropolisAlgForIsingModel(size, beta, flag, sigma, J):
@@ -18,6 +19,7 @@ def metropolisAlgForIsingModel(size, beta, flag, sigma, J):
     numSamples = 100000
     accepted = 0
     checkR = 0
+    J = 4  # STAND FOR SPATIAL CORRELATION FUCNTION J
     magnetizationList = []
     magnetizationList.clear()
     absoluteValueOfMagnetizationList = []
@@ -27,6 +29,7 @@ def metropolisAlgForIsingModel(size, beta, flag, sigma, J):
     absoluteValueOfMagnetizationList.append(math.fabs(initMagn))
     energies = []
     energies.append(energy)
+    spatialFunctionNorms = []
     random.seed()
     while (number < numSamples):
         i = random.randint(0, size - 1)
@@ -45,6 +48,8 @@ def metropolisAlgForIsingModel(size, beta, flag, sigma, J):
             absoluteValueOfMagnetizationList.append(math.fabs(magnetization))
             energy += energyDelta
             energies.append(energy)
+            spatialFunctionNorms.append(calculatesSpatialCorrelationLength(sigma, J))
+
             accepted += 1
         elif r < math.exp(minusBeta * energyDelta):
             initial[i][j] = -initial[i][j]
@@ -52,7 +57,10 @@ def metropolisAlgForIsingModel(size, beta, flag, sigma, J):
             magnetization = magnetizationCalculation(initial)
             magnetizationList.append(magnetization)
             absoluteValueOfMagnetizationList.append(math.fabs(magnetization))
+
             energies.append(energy)
+            spatialFunctionNorms.append(calculatesSpatialCorrelationLength(sigma, J))
+
             accepted += 1
             checkR += 1
 
@@ -90,7 +98,8 @@ def metropolisAlgForIsingModel(size, beta, flag, sigma, J):
     # we return normalize magnetization sigma(i,j)/L^2
     print("Final Sigma:\n")
     print(initial)
-    return initial, mean, energyMean
+    return initial, mean, energyMean, numpy.mean(spatialFunctionNorms), numpy.var(unCorrelatedEnergy), -numpy.var(
+        unCorrelatedAbsoluteMagnetization)
 
 
 if __name__ == "__main__":
@@ -100,18 +109,28 @@ if __name__ == "__main__":
     flag = False
     magVersusTemp = {}
     energyVersusTemp = {}
+    spatialCorrelationFunctionVersusTemp = {}
     temperature = 20
     temp = numpy.random.choice([0], size=(size, size))
     temperatures = []
+    heatCapacities = {}
+    susceptibilities = {}
     while (temperature > 0.1):
         beta = (1.0000000 / temperature)
-        temp, mag, meanOfEnergy = metropolisAlgForIsingModel(size, beta, flag, temp, j)
+        temp, mag, meanOfEnergy, spatialCorrelation, heatCapacity, susceptibility = metropolisAlgForIsingModel(size,
+                                                                                                               beta,
+                                                                                                               flag,
+                                                                                                               temp, j)
+        heatCapacities[beta] = (heatCapacity / (temperature ** 2))
+        susceptibilities[beta] = math.fabs(susceptibility)
         magVersusTemp[beta] = mag
         energyVersusTemp[beta] = meanOfEnergy
+        spatialCorrelationFunctionVersusTemp[beta] = spatialCorrelation
         print("For T=", temperature, " Magn =", mag)
+        print("For B=", beta, ' Spatial Correlation= ', spatialCorrelation)
         flag = True
         temperatures.append(temperature)
-        temperature -= 0.05
+        temperature *= 0.92
 
     print(magVersusTemp)
     temperatureInverseAxis = list(magVersusTemp.keys())
@@ -124,6 +143,31 @@ if __name__ == "__main__":
     pylab.xlabel("B")
     pylab.ylabel("E")
     pylab.plot(temperatureInverseAxis, energyAxis, '.', color='r')
+    pylab.show()
+
+    spatialCorrelationAxis = list(spatialCorrelationFunctionVersusTemp.values())
+    pylab.xlabel('B')
+    pylab.ylabel('Kisi(J)')
+    pylab.plot(temperatureInverseAxis, spatialCorrelationAxis, '.', color='b')
+    pylab.show()
+    maxKisi = numpy.nanmax(numpy.array(spatialCorrelationAxis))
+    print("Critical kisi: ", maxKisi, "\n")
+
+    index = spatialCorrelationAxis.index(maxKisi)
+    criticalTemperature = temperatureInverseAxis.__getitem__(index)
+    print("Critical Temperature ", 1 / criticalTemperature)
+
+    tMinusTc=criticalTemperature-2.26918531421
+    heatCapacityAxis = list(heatCapacities.values())
+    pylab.xlabel('B')
+    pylab.ylabel('C')
+    pylab.plot(temperatureInverseAxis, heatCapacityAxis, '.', color='r')
+    pylab.show()
+
+    susceptibilityAxis = list(susceptibilities.values())
+    pylab.xlabel('B')
+    pylab.ylabel('X')
+    pylab.plot(temperatureInverseAxis, susceptibilityAxis, '.', color='b')
     pylab.show()
 
     sortedTemp = temperatures[::-1]
