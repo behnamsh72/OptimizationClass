@@ -13,7 +13,7 @@ We don't actually learn anything other than we just remember.So we remember trai
 and we want to predict the label of new example,we find the nearest example in the training data
 and just choose the label associated with that example.
 K nearest neighbors:
-the basic idea here is that we don't just take the nearest neighbors, we take some number of nearest
+the basic idea here is that we don't just take the nearest neighbor, we take some number of nearest
 neighbors,usually an odd number, and we just let them vote.
  Advantages:
 ◦ Learning fast, no explicit training

@@ -260,7 +260,7 @@ if __name__ == "__main__":
     truePos, falsePos, trueNeg, falseNeg = \
         randomSplits(examples, knn, numSplits)
 
-    print('Average of LOO testing using KNN (k=3)')
+    print('Average of Leave One Out testing using KNN (k=3)')
     truePos, falsePos, trueNeg, falseNeg = \
         leaveOneOut(examples, knn)
 
